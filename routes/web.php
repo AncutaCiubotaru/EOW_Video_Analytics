@@ -19,3 +19,5 @@ Route::get('/', function () {
 
 Route::get('/videos', 'VideoAnalyticsController@index');
 Route::get('/videos/{id}', 'VideoAnalyticsController@show');
+
+Route::post('/playevent', 'VideoAnalyticsController@store_play_event');
