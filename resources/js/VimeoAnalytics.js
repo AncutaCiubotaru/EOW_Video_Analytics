@@ -22,10 +22,10 @@ player.on('play', function(event_data) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         type: "POST",
-        url: '/playevent',
+        url: '/play_event',
         data: data,
         success: function() {
-            console.log("/playevent success");
+            console.log("/play_event success");
         },
         error: function(e){
             console.log(e);
