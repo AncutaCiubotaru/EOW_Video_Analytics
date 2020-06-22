@@ -25,7 +25,7 @@ player.on('play', function(event_data) {
         url: '/playevent',
         data: data,
         success: function() {
-            console.log(data);
+            console.log("/playevent success");
         },
         error: function(e){
             console.log(e);
