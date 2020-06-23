@@ -4,10 +4,27 @@ import { v4 as uuidv4 } from 'uuid';
 var iframe = document.querySelector('iframe');
 var player = new Vimeo.Player(iframe);
 
-player.on('play', function(event_data) {
+let video_id = window.location.pathname;
+let user_id = get_user_id();
 
-    let video_id = window.location.pathname;
-    let user_id = uuidv4();
+function get_user_id() {
+
+    if(!localStorage.getItem("user_id"))
+        localStorage.setItem("user_id", uuidv4());
+
+    return localStorage.getItem("user_id");
+
+}
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    type: "POST",
+});
+
+
+player.on('play', function(event_data) {
     var data =
         {
             video_id : video_id,
@@ -18,10 +35,6 @@ player.on('play', function(event_data) {
             seconds: event_data.seconds
         };
     $.ajax({
-       headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        type: "POST",
         url: '/play_event',
         data: data,
         success: function() {

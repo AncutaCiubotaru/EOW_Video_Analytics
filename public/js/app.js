@@ -19971,9 +19971,21 @@ __webpack_require__.r(__webpack_exports__);
 
 var iframe = document.querySelector('iframe');
 var player = new Vimeo.Player(iframe);
+var video_id = window.location.pathname;
+var user_id = get_user_id();
+
+function get_user_id() {
+  if (!localStorage.getItem("user_id")) localStorage.setItem("user_id", Object(uuid__WEBPACK_IMPORTED_MODULE_0__["v4"])());
+  return localStorage.getItem("user_id");
+}
+
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  },
+  type: "POST"
+});
 player.on('play', function (event_data) {
-  var video_id = window.location.pathname;
-  var user_id = Object(uuid__WEBPACK_IMPORTED_MODULE_0__["v4"])();
   var data = {
     video_id: video_id,
     user_id: user_id,
@@ -19983,10 +19995,6 @@ player.on('play', function (event_data) {
     seconds: event_data.seconds
   };
   $.ajax({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    type: "POST",
     url: '/play_event',
     data: data,
     success: function success() {
