@@ -15,13 +15,17 @@ class CreateEventLogsTable extends Migration
     {
         Schema::create('event_logs', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('video_id');
             $table->string('user_id');
             $table->string('event_name');
-            $table->float('duration');
-            $table->float('percent');
-            $table->float('seconds');
+            $table->float('duration')->nullable(true);
+            $table->float('percent')->nullable(true);
+            $table->float('seconds')->nullable(true);
+            $table->string('message')->nullable(true);
+            $table->string('method')->nullable(true);
+            $table->string('name')->nullable(true);
+            $table->float('volume')->nullable(true);
+            $table->timestamps();
 
         });
     }
