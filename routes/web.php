@@ -31,3 +31,4 @@ Route::post('/progress_event', 'VideoAnalyticsController@store_progress_event');
 Route::post('/seeked_event', 'VideoAnalyticsController@store_seeked_event');
 Route::post('/timeupdate_event', 'VideoAnalyticsController@store_timeupdate_event');
 Route::post('/volumechange_event', 'VideoAnalyticsController@store_volumechange_event');
+Route::post('/chapterchange_event', 'VideoAnalyticsController@store_chapterchange_event');

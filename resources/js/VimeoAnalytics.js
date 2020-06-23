@@ -299,3 +299,29 @@ player.on('volumechange', function(event_data) {
         log_error(e);
     }
 });
+
+// player.on('chapterchange', function(event_data) {
+//     try {
+//         var data =
+//             {
+//                 video_id : video_id,
+//                 user_id : user_id,
+//                 event_name : 'chapterchange',
+//                 chapter_index: event_data.index,
+//                 chapter_startTime: event_data.startTime,
+//                 chapter_title: event_data.title,
+//             };
+//         $.ajax({
+//             url: '/chapterchange_event',
+//             data: data,
+//             success: function() {
+//                 console.log("/chapterchange_event success");
+//             },
+//             error: function(e){
+//                 log_error(e);
+//             }
+//         });
+//     } catch (e) {
+//         log_error(e);
+//     }
+// });

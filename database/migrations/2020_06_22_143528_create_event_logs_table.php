@@ -25,6 +25,10 @@ class CreateEventLogsTable extends Migration
             $table->string('method')->nullable(true);
             $table->string('name')->nullable(true);
             $table->float('volume')->nullable(true);
+            $table->integer('chapter_index')->nullable(true);
+            $table->float('chapter_startTime')->nullable(true);
+            $table->float('chapter_title')->nullable(true);
+
             $table->timestamps();
 
         });
