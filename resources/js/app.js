@@ -1,2 +1,2 @@
 require('./bootstrap');
-require('./VimeoAnalytics');
+require('./VimeoIntervals');

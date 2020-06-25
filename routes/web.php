@@ -17,18 +17,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/videos', 'VideoAnalyticsController@index');
-Route::get('/videos/{id}', 'VideoAnalyticsController@show');
+Route::get('/videos', 'VimeoIntervalsController@index');
+Route::get('/videos/{id}', 'VimeoIntervalsController@show');
 
-Route::post('/play_event', 'VideoAnalyticsController@store_play_event');
-Route::post('/bufferend_event', 'VideoAnalyticsController@store_bufferend_event');
-Route::post('/bufferstart_event', 'VideoAnalyticsController@store_bufferstart_event');
-Route::post('/ended_event', 'VideoAnalyticsController@store_ended_event');
-Route::post('/error_event', 'VideoAnalyticsController@store_error_event');
-Route::post('/function_error', 'VideoAnalyticsController@store_function_error');
-Route::post('/pause_event', 'VideoAnalyticsController@store_pause_event');
-Route::post('/progress_event', 'VideoAnalyticsController@store_progress_event');
-Route::post('/seeked_event', 'VideoAnalyticsController@store_seeked_event');
-Route::post('/timeupdate_event', 'VideoAnalyticsController@store_timeupdate_event');
-Route::post('/volumechange_event', 'VideoAnalyticsController@store_volumechange_event');
-Route::post('/chapterchange_event', 'VideoAnalyticsController@store_chapterchange_event');
+Route::post('/play_event', 'VimeoEventsController@store_play_event');
+Route::post('/bufferend_event', 'VimeoEventsController@store_bufferend_event');
+Route::post('/bufferstart_event', 'VimeoEventsController@store_bufferstart_event');
+Route::post('/ended_event', 'VimeoEventsController@store_ended_event');
+Route::post('/error_event', 'VimeoEventsController@store_error_event');
+Route::post('/function_error', 'VimeoEventsController@store_function_error');
+Route::post('/pause_event', 'VimeoEventsController@store_pause_event');
+Route::post('/progress_event', 'VimeoEventsController@store_progress_event');
+Route::post('/seeked_event', 'VimeoEventsController@store_seeked_event');
+Route::post('/timeupdate_event', 'VimeoEventsController@store_timeupdate_event');
+Route::post('/volumechange_event', 'VimeoEventsController@store_volumechange_event');
+
+Route::post('/record_intervals', 'VimeoIntervalsController@record_intervals');

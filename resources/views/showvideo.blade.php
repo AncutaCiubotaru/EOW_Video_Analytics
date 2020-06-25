@@ -3,8 +3,8 @@
 @section('content')
     <div class="container-fluid">
         <div class="row mt-3 ml-5">
-            <div class="col-6 embed-responsive embed-responsive-16by9">
-                <iframe src="https://player.vimeo.com/video/{{$id}}"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <div class="col-12 embed-responsive embed-responsive-16by9">
+                <iframe id = "v_player" src="https://player.vimeo.com/video/{{$id}}"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             </div>
         </div>
     </div>

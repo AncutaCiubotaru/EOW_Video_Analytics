@@ -16,6 +16,7 @@ function get_user_id() {
 
 }
 
+
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -41,15 +42,54 @@ player.on('play', function(event_data) {
             data: data,
             success: function() {
                 console.log("/play_event success");
+                console.log(data);
             },
             error: function(e){
                 log_error(e);
             }
         });
+
     } catch (e) {
         log_error(e);
     }
 });
+
+player.on('pause', function(event_data) {
+    try {
+        let time_diff_seconds = (Date.now() - get_start_time_recorded())/1000;
+        let end_interval_tmp = parseFloat(get_start_time()) + time_diff_seconds;
+        let end_interval = end_interval_tmp.toString().substring(0, end_interval_tmp.toString().indexOf(".") + 4)
+        set_end_time(end_interval);
+
+        console.log(get_start_time());
+        console.log(get_end_time());
+
+        var data =
+            {
+                video_id : video_id,
+                user_id : user_id,
+                event_name : 'pause',
+                duration: event_data.duration,
+                percent: event_data.percent,
+                seconds: event_data.seconds,
+            };
+        $.ajax({
+            url: '/ended_event',
+            data: data,
+            success: function() {
+                console.log("/pause_event success");
+                console.log(data);
+            },
+            error: function(e){
+                log_error(e);
+            }
+        });
+
+    } catch (e) {
+        log_error(e);
+    }
+});
+
 
 player.on('bufferend', function() {
     try {
@@ -149,6 +189,7 @@ function log_error(error)
         console.log(e);
     }
 }
+
 player.on('error', function(event_data) {
 
     var data =
@@ -172,31 +213,6 @@ player.on('error', function(event_data) {
     });
 });
 
-player.on('pause', function(event_data) {
-    try {
-        var data =
-            {
-                video_id : video_id,
-                user_id : user_id,
-                event_name : 'pause',
-                duration: event_data.duration,
-                percent: event_data.percent,
-                seconds: event_data.seconds,
-            };
-        $.ajax({
-            url: '/ended_event',
-            data: data,
-            success: function() {
-                console.log("/pause_event success");
-            },
-            error: function(e){
-                log_error(e);
-            }
-        });
-    } catch (e) {
-        log_error(e);
-    }
-});
 
 player.on('progress', function(event_data) {
     try {
@@ -299,29 +315,3 @@ player.on('volumechange', function(event_data) {
         log_error(e);
     }
 });
-
-// player.on('chapterchange', function(event_data) {
-//     try {
-//         var data =
-//             {
-//                 video_id : video_id,
-//                 user_id : user_id,
-//                 event_name : 'chapterchange',
-//                 chapter_index: event_data.index,
-//                 chapter_startTime: event_data.startTime,
-//                 chapter_title: event_data.title,
-//             };
-//         $.ajax({
-//             url: '/chapterchange_event',
-//             data: data,
-//             success: function() {
-//                 console.log("/chapterchange_event success");
-//             },
-//             error: function(e){
-//                 log_error(e);
-//             }
-//         });
-//     } catch (e) {
-//         log_error(e);
-//     }
-// });
