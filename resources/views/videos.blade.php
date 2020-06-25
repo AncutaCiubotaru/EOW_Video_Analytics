@@ -10,7 +10,7 @@
                 <li class="list-group-item"><a href="/videos/3689581">Video 4</a></li>
                 <li class="list-group-item"><a href="/videos/2238631">Video 5</a></li>
                 <li class="list-group-item"><a href="/videos/431915878">Video 6</a></li>
-
+                <li class="list-group-item"><a href="/videos_many">Many videos</a></li>
             </ul>
         </div>
     </div>

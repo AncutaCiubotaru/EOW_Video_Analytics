@@ -18,6 +18,11 @@ class VimeoIntervalsController extends Controller{
         return view('showvideo', ['id' => $id]);
     }
 
+    public function show_many()
+    {
+        return view('showmany');
+    }
+
     public function store_error_event(Request $request)
     {
         $event = new EventLog();

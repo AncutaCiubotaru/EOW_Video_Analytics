@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::get('/videos', 'VimeoIntervalsController@index');
 Route::get('/videos/{id}', 'VimeoIntervalsController@show');
+Route::get('/videos_many', 'VimeoIntervalsController@show_many');
 
 Route::post('/play_event', 'VimeoEventsController@store_play_event');
 Route::post('/bufferend_event', 'VimeoEventsController@store_bufferend_event');

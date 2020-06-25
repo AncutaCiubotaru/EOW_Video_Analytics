@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 class VimeoIntervals{
 
-    constructor(video_player_id) {
-        this.video_id = window.location.pathname;
+    constructor(video_player_el) {
+        this.video_id = video_player_el.src;
         this.user_id = this.get_user_id();
-        this.video_player =  new Vimeo.Player(video_player_id);
+        this.video_player =  new Vimeo.Player(video_player_el);
 
         this.video_player.on('play', this.play_event.bind(this));
         this.video_player.on('pause', this.pause_event.bind(this));
@@ -90,7 +90,7 @@ class VimeoIntervals{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
             body: JSON.stringify(data)
         });
@@ -141,8 +141,12 @@ class VimeoIntervals{
         }
     }
 }
+let video_players = document.getElementsByClassName('v_player');
+console.log(video_players);
 
-let video_player_id = document.querySelector('#v_player');
-let video_intervals = new VimeoIntervals(video_player_id);
+for (let video_player of video_players) {
+    new VimeoIntervals(video_player);
+}
+
 
 
