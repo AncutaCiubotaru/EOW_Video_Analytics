@@ -20811,6 +20811,7 @@ var VimeoIntervals = /*#__PURE__*/function () {
         this.set_end_time(end_interval);
         console.log(this.get_start_time());
         console.log(this.get_end_time());
+        console.log(this.video_id);
         var data = {
           video_id: this.video_id,
           user_id: this.user_id,

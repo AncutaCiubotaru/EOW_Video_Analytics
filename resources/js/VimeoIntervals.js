@@ -64,6 +64,7 @@ class VimeoIntervals{
 
             console.log(this.get_start_time());
             console.log(this.get_end_time());
+            console.log(this.video_id);
 
             let data =
                 {
